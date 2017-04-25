@@ -1,0 +1,5 @@
+trombi:
+    resource: "@TrombiBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
