@@ -6,11 +6,14 @@ use TrombiBundle\Entity\Person;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Person controller.
  *
  * @Route("person")
+ * @Security("has_role('ROLE_ADMIN')")
+ *
  */
 class PersonController extends Controller
 {

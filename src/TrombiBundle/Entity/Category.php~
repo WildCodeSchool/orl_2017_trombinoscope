@@ -69,5 +69,45 @@ class Category
     {
         return $this->name;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->persons = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add person
+     *
+     * @param \TrombiBundle\Entity\Person $person
+     *
+     * @return Category
+     */
+    public function addPerson(\TrombiBundle\Entity\Person $person)
+    {
+        $this->persons[] = $person;
+
+        return $this;
+    }
+
+    /**
+     * Remove person
+     *
+     * @param \TrombiBundle\Entity\Person $person
+     */
+    public function removePerson(\TrombiBundle\Entity\Person $person)
+    {
+        $this->persons->removeElement($person);
+    }
+
+    /**
+     * Get persons
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPersons()
+    {
+        return $this->persons;
+    }
+}

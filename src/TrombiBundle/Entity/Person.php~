@@ -194,5 +194,28 @@ class Person
     {
         return $this->description;
     }
-}
 
+    /**
+     * Set category
+     *
+     * @param \TrombiBundle\Entity\Category $category
+     *
+     * @return Person
+     */
+    public function setCategory(\TrombiBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \TrombiBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+}

@@ -9,7 +9,15 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block header %}
+
+        {% endblock %}
+        {% block body %}
+        {% endblock %}
+        {% block footer %}
+            <nav>footer wcs</nav>
+        {% endblock %}
+
         {% block javascripts %}
             <script
                     src="https://code.jquery.com/jquery-3.2.1.min.js"
