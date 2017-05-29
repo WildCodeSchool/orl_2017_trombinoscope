@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% if form is defined %}
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% endif %}
 {% block header %}
     <nav class="navbar navbar-default" role="navigation">
         <a class="navbar-brand" href="#">Admin</a>
