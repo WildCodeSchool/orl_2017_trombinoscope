@@ -10,4 +10,15 @@ namespace TrombiBundle\Repository;
  */
 class PersonRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function searchByName($input, $category)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.firstname LIKE :input')
+            ->orWhere('p.lastname LIKE :input')
+            ->setParameter('input', '%'.$input.'%')
+             ->andWhere('p.category = :category')
+            ->setParameter('category', $category);
+        return $qb->getQuery()->getResult();
+
+    }
 }
