@@ -66,6 +66,14 @@ class Person
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255)
+     */
+    private $picture;
+
+
+    /**
      * Get id
      *
      * @return int

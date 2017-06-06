@@ -8,3 +8,22 @@ services:
         class: TrombiBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: trombi_user_registration }
+
+    trombi.file_uploader:
+        class: TrombiBundle\Service\FileUploader
+        arguments: ['%upload_directory%']
+
+    trombi.doctrine_person_listener:
+        class: TrombiBundle\EventListener\PersonUploadListener
+        arguments: ['@trombi.file_uploader']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }
+            - { name: doctrine.event_listener, event: preRemove }
+
+    trombi.twig_extension:
+            class: TrombiBundle\Twig\TwigExtension
+            public: false
+            tags:
+                - { name: twig.extension }

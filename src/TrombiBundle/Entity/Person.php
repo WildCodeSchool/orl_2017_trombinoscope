@@ -3,6 +3,7 @@
 namespace TrombiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Person
@@ -63,6 +64,15 @@ class Person
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="persons")
      */
     private $category;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     * @Assert\Image()
+     */
+    private $picture;
 
 
     /**
@@ -217,5 +227,29 @@ class Person
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return Person
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }

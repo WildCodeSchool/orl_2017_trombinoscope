@@ -12,6 +12,7 @@
                 <th>Lastname</th>
                 <th>Birthdate</th>
                 <th>Description</th>
+                <th>Picture</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -24,6 +25,10 @@
                 <td>{{ person.lastname }}</td>
                 <td>{% if person.birthdate %}{{ person.birthdate|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ person.description }}</td>
+                <td>
+                    <img src="{{ asset('uploads/' ~ person.picture|basename ) }}"
+                         alt="{{ person.firstname }} {{ person.lastname }}"/>
+                </td>
                 <td>
                     <ul>
                         <li>
