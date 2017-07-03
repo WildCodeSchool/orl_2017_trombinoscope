@@ -4,10 +4,15 @@
 {% block body %}
     <h1>WCS Trombinoscope</h1>
 
+
     <div class="row">
         <div class="col-sm-12">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {{ form_row(form.input) }}
+
+            <ul id="trombi_search_autocomplete"></ul>
+
+            {{ form_row(form.category) }}
             <input type="submit" class="btn btn-primary" value="GO"/>
             {{ form_end(form) }}
         </div>
@@ -31,3 +36,8 @@
 
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/autocompleteWilder.js') }}"></script>
+
+{% endblock %}

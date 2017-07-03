@@ -10,7 +10,7 @@ namespace TrombiBundle\Repository;
  */
 class PersonRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function searchByName($input, $category)
+    public function searchByNameAndCategory($input, $category)
     {
         $qb = $this->createQueryBuilder('p')
             ->where('p.firstname LIKE :input')
@@ -18,6 +18,17 @@ class PersonRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('input', '%'.$input.'%')
              ->andWhere('p.category = :category')
             ->setParameter('category', $category);
+        return $qb->getQuery()->getResult();
+
+    }
+
+    public function searchByName($input)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->select('p.firstname, p.lastname')
+            ->where('p.firstname LIKE :input')
+            ->orWhere('p.lastname LIKE :input')
+            ->setParameter('input', '%'.$input.'%');
         return $qb->getQuery()->getResult();
 
     }

@@ -3,6 +3,7 @@
 namespace TrombiBundle\Controller;
 
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use TrombiBundle\Entity\Person;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -53,6 +54,8 @@ class PersonController extends Controller
 
             $em->persist($person);
             $em->flush();
+            $this->addFlash('success',
+                'le personnage '.$person->getLastname().' a bien été créé');
 
             return $this->redirectToRoute('person_show', array('id' => $person->getId()));
         }
@@ -104,19 +107,12 @@ class PersonController extends Controller
     {
         $deleteForm = $this->createDeleteForm($person);
 
-//        if ($person->getPicture()) {
-//            $person->setPicture(
-//                new File($this->getParameter('upload_directory') . '/' .
-//                    $person->getPicture())
-//            );
-//        }
-
         $editForm = $this->createForm('TrombiBundle\Form\PersonType', $person);
         $editForm->handleRequest($request);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'le personnage est bien mis à jour');
 
             return $this->redirectToRoute('person_index');
         }
@@ -126,6 +122,9 @@ class PersonController extends Controller
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+
+
+
     }
 
     /**

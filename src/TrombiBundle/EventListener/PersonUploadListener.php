@@ -28,7 +28,6 @@ class PersonUploadListener
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-
         $this->uploadFile($entity);
     }
 
@@ -42,12 +41,12 @@ class PersonUploadListener
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-
         if (!$entity instanceof Person) {
             return;
         }
-        if ($fileName = $entity->getPicture()) {
-            $entity->setPicture(new File($this->uploader->getTargetDir().'/'.$fileName));
+        $entity->setUpdatedAt();
+         if ($fileName = $entity->getPicture()) {
+            $entity->setPicFile(new File($this->uploader->getTargetDir().'/'.$fileName));
         }
     }
 
@@ -72,8 +71,7 @@ class PersonUploadListener
             return;
         }
 
-        $file = $entity->getPicture();
-
+        $file = $entity->getPicFile();
         // only upload new files
         if (!$file instanceof UploadedFile) {
             return;

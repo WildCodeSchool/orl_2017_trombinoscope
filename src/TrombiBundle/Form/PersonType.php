@@ -25,9 +25,7 @@ class PersonType extends AbstractType
             ->add('lastname')
             ->add('birthdate', BirthdayType::class)
             ->add('description')
-            ->add('picture', null, [
-                'required' => false,
-            ])
+            ->add('picFile')
             ->add('category', EntityType::class, [
                 'class'=>'TrombiBundle:Category',
                 'choice_label'=>'name',

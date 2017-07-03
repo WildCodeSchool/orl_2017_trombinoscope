@@ -69,11 +69,24 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
-     * @Assert\Image()
+     * @ORM\Column(name="picture", type="string", length=255)
      */
     private $picture;
 
+    /**
+     * @var string
+     *
+     * @Assert\Image()
+     */
+    private $picFile;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
 
     /**
      * Get id
@@ -252,4 +265,39 @@ class Person
     {
         return $this->picture;
     }
+
+    /**
+     * @return string
+     */
+    public function getPicFile()
+    {
+        return $this->picFile;
+    }
+
+    /**
+     * @param string $picFile
+     */
+    public function setPicFile($picFile)
+    {
+        $this->picFile = $picFile;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUpdatedAt(): string
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param string $updatedAt
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+
+
 }
